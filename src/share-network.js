@@ -23,7 +23,7 @@ export default {
      */
     url: {
       type: String,
-      required: true
+      required: false
     },
 
     /**
@@ -31,7 +31,7 @@ export default {
      */
     title: {
       type: String,
-      required: true
+      required: false
     },
 
     /**
@@ -148,8 +148,8 @@ export default {
 
       return link
         .replace(/@tu/g, '&via=' + encodeURIComponent(this.twitterUser))
-        .replace(/@u/g, encodeURIComponent(this.url))
-        .replace(/@t/g, encodeURIComponent(this.title))
+        .replace(/@u/g, encodeURIComponent(this.url?this.url:""))
+        .replace(/@t/g, encodeURIComponent(this.title?this.title:""))
         .replace(/@d/g, encodeURIComponent(this.description))
         .replace(/@q/g, encodeURIComponent(this.quote))
         .replace(/@h/g, this.encodedHashtags)
