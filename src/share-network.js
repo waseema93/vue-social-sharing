@@ -22,16 +22,14 @@ export default {
      * URL of the content to share.
      */
     url: {
-      type: String,
-      required: false
+      type: String
     },
 
     /**
      * Title of the content to share.
      */
     title: {
-      type: String,
-      required: false
+      type: String
     },
 
     /**
@@ -145,8 +143,12 @@ export default {
         if (!this.hashtags.length) link = link.replace('&hashtags=@h', '')
         if (!this.twitterUser.length) link = link.replace('@tu', '')
       }
-      // this.url?link.replace(/@u/g, encodeURIComponent(this.url)):""
-      // this.title?link.replace(/@t/g, encodeURIComponent(this.title)):""
+      if(this.url){
+        link.replace(/@u/g, encodeURIComponent(this.url))
+      }
+      if(this.title){
+        link.replace(/@t/g, encodeURIComponent(this.title))
+      }
       return link
         .replace(/@tu/g, '&via=' + encodeURIComponent(this.twitterUser))
         .replace(/@d/g, encodeURIComponent(this.description))
