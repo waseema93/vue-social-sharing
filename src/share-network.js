@@ -145,11 +145,10 @@ export default {
         if (!this.hashtags.length) link = link.replace('&hashtags=@h', '')
         if (!this.twitterUser.length) link = link.replace('@tu', '')
       }
-
+      this.url?link.replace(/@u/g, encodeURIComponent(this.url)):""
+      this.title?link.replace(/@t/g, encodeURIComponent(this.title)):""
       return link
         .replace(/@tu/g, '&via=' + encodeURIComponent(this.twitterUser))
-        .replace(/@u/g, encodeURIComponent(this.url?this.url:""))
-        .replace(/@t/g, encodeURIComponent(this.title?this.title:""))
         .replace(/@d/g, encodeURIComponent(this.description))
         .replace(/@q/g, encodeURIComponent(this.quote))
         .replace(/@h/g, this.encodedHashtags)
